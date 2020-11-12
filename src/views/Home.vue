@@ -110,47 +110,6 @@ export default {
                     text: 'Citizenship'
                 }
             ],
-            items: [],
-            fields: [{
-                    key: 'name',
-                    label: 'Name',
-                    type: 'text',
-                    sortable: true,
-                },
-                {
-                    key: 'email',
-                    label: 'Email',
-                    type: 'email',
-                    sortable: true,
-                },
-                {
-                    key: 'phone',
-                    label: 'Phone',
-                    type: 'tel',
-                    sortable: true,
-                },
-                {
-                    key: 'date',
-                    label: 'Date',
-                    type: 'date',
-                    sortable: true,
-                },
-                {
-                    key: 'time',
-                    label: 'Time',
-                    type: 'time',
-                    sortable: true,
-                },
-                {
-                    key: 'sevices',
-                    label: 'Services',
-                    sortable: true,
-                },
-                {
-                    key: 'actions',
-                    label: 'Actions'
-                }
-            ],
         };
     },
 
@@ -172,15 +131,7 @@ export default {
         },
 
         onHandleConfirm() {
-            this.$http.post("/schedules", this.items({
-                id: this.con,
-                name: this.form.name,
-                email: this.form.email,
-                phone: this.form.phone,
-                date: this.form.date,
-                time: this.form.time,
-                services: this.form.services
-            })).then(() => {
+            this.$http.post("/schedules", this.form()).then(() => {
                 this.form = {
                     name: '',
                     email: '',
@@ -193,6 +144,7 @@ export default {
                 this.getSchedules();
             });
         },
+
         onHandleUpdate() {
             this.$http.patch(
                     `/schedules/${this.form.id}`,
@@ -242,6 +194,5 @@ export default {
             this.$bvModal.show("modal-add-schedule");
         }
     }
-
-};
+}
 </script>
